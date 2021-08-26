@@ -42,7 +42,7 @@ if(isset($_GET['messageto'])){
                     <?php if($getInfoUserOnline->statut_connection == 1): ?>
                      <span class="float-end text-warning">En ligne</span>
                      <?php else :?>
-                    <span class="float-end  text-danger">Hors Ligne depuis <?=$dateDeconnection->format('h:i') ?></span>
+                    <span class="float-end  text-danger">Hors Ligne depuis <?=$dateDeconnection->format('h:i')?></span>
                     <?php endif ;?>
                 </a>
                 <?php endforeach; ?>

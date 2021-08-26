@@ -7,11 +7,7 @@ class Conversation {
         $query = "INSERT INTO conversation (id_user_exp, id_user_dest, message, date_conversation) VALUES (?,?,?,NOW())";
         $result = Connection::connect()->prepare($query);
         $returnValue = $result->execute([$id_user_exp,	$id_user_dest,	$message]);
-        if($returnValue == true){
-            return true;
-        }else {
-            return false;
-        }
+        return $returnValue == true ? true : false;
 
     }
 
@@ -23,5 +19,13 @@ class Conversation {
         $userInfo = $result->fetchAll(PDO::FETCH_OBJ);
         return $userInfo;
 
+    }
+
+    public static function isUserConvers($id){
+        $query = "SELECT * FROM conversation  WHERE id_user_exp = ? OR id_user_dest = ? ";
+        $result = Connection::connect()->prepare($query);
+        $result->execute([$id,$id]);
+        $userInfo = $result->rowCount();
+         return $userInfo != 0 ? true : false;
     }
 }
